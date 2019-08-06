@@ -1,32 +1,38 @@
 const mongoose = require("mongoose");
 const asesoriaSchema = new mongoose.Schema({
+    
     "lugar":{
         type: String,
         required: true
     },
-    "fecha-día":{
+    "materia":{
         type: String,
         required: true
     },
-    "fecha-mes":{
+    "fechaDia":{
         type: String,
         required: true
     },
-    "fecha-año":{
+    "fechaMes":{
         type: String,
         required: true
     },
-    "hora-inicio":{
+    "fechaAño":{
         type: String,
         required: true
     },
-    "hora-fin":{
+    "horaInicio":{
         type: String,
         required: true
     },
-    "id-asesor":{
+    "horaFin":{
         type: String,
         required: true
+    },
+    "idAsesor":{
+        type: String,
+        required: true,
+        trim: true
     },
     "asistentes":{
         type: Array
