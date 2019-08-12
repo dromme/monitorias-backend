@@ -11,9 +11,7 @@ mongoose.connect(uri,{ useNewUrlParser:true});
 app.use(cors());
 app.use(bodyParser.json());
 
-//Space to use routers
 app.use('/api/v1',asesoriaRouter);
-//
 
 app.listen(PORT, function() {
     console.log("Server is running on Port: " + PORT);

@@ -21,14 +21,6 @@ exports.getAsesoriaByDay = (req,res) =>{
     });
 };
 
-
-exports.getAsesoriaByWeek = () => {
-
-
-
-
-};
-
 exports.getAsesoriaByMonth = (req,res) => {
 
     Asesoria.find({fechaMes: req.query.fechaMes}, (err,result) =>{
@@ -48,8 +40,6 @@ exports.getAsesoriaByMonth = (req,res) => {
             });
         }
     });
-
-
 };
 
 exports.createAsesoria = (req,res) => {
@@ -75,4 +65,23 @@ exports.createAsesoria = (req,res) => {
     });
 };
 
+exports.getAsesoriaByMonitor = (req,res) => {
 
+    Asesoria.find({idAsesor: req.query.idAsesor}, (err,result) =>{
+
+        if( result.length==0 || err ){
+            res.send({
+                status:400,
+                message: "Error searching in bd",
+                error: err  
+            });
+        }else{
+            console.log("Results tiene ", result);
+            res.send({
+                status:200,
+                message: "The results are",
+                data: result
+            });
+        }
+    });
+};  
