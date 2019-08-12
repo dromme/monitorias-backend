@@ -22,7 +22,7 @@ const materiaxInstructorSchema = new mongoose.Schema({
             type:String}
          }],
     "asesoriaPrivada" : [{
-        "idAsesoria" : {
+        "idAsesoriaPrivada" : {
             type:String}
          }],
     "subscriptors" : [{
