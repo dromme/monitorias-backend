@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const PORT = 4000;
+const port = process.env.PORT || 4000;
 const mongoose = require('mongoose');
 const uri = "mongodb+srv://root:root@monitorias-db-m2hlw.mongodb.net/test?retryWrites=true&w=majority";
 const asesoriaRouter = require('./App/routes/getAsesoria');
