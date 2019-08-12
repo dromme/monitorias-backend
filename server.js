@@ -17,6 +17,6 @@ app.use('/api/v1',asesoriaRouter);
 app.use('/api/v1/users',userRouter);
 app.use('/api/v1/cursos',cursoRouter);
 
-app.listen(PORT, function() {
+app.listen(port, function() {
     console.log("Server is running on Port: " + PORT);
 });
