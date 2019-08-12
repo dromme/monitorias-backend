@@ -18,5 +18,5 @@ app.use('/api/v1/users',userRouter);
 app.use('/api/v1/cursos',cursoRouter);
 
 app.listen(port, function() {
-    console.log("Server is running on Port: " + PORT);
+    console.log("Server is running on Port: " + port);
 });
