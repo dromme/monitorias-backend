@@ -2,7 +2,7 @@ const Asesoria = require('../models/asesorias');
 
 exports.getAsesoriaByDay = (req,res) =>{
 
-    Asesoria.find({ fechaDia: req.query.fechaDia,fechaMes: req.query.fechaMes}, (err,result) =>{
+    Asesoria.find({date: {"$regex":req.query.dia, "$options": "i" }}, (err,result) =>{
 
         if( result.length==0 || err ){
             res.send({
@@ -23,7 +23,7 @@ exports.getAsesoriaByDay = (req,res) =>{
 
 exports.getAsesoriaByMonth = (req,res) => {
 
-    Asesoria.find({fechaMes: req.query.fechaMes}, (err,result) =>{
+    Asesoria.find({date: {"$regex":req.query.mes, "$options": "i" }}, (err,result) =>{
 
         if( result.length==0 || err ){
             res.send({
@@ -44,15 +44,28 @@ exports.getAsesoriaByMonth = (req,res) => {
 
 exports.createAsesoria = (req,res) => {
 
+    const help = {
+        id : req.body.idInstructor,
+        idMateria: req.body.nameInstructor
+    };
+
+    const help1 = {
+        name : req.body.nameSubscriptor,
+        email: req.body.email,
+        state: req.body.state
+    };
+
     const asesoria = new Asesoria({
-        lugar: req.body.lugar,
-        materia: req.body.materia,
-        fechaDia: req.body.fechaDia,
-        fechaMes: req.body.fechaMes,
-        fechaAño: req.body.fechaAño,
-        horaInicio: req.body.horaInicio,
-        horaFin: req.body.horaFin,
-        idAsesor: req.body.idAsesor
+        name: req.body.name,
+        description: req.body.description,
+        place: req.body.place,
+        materiaxinstructor: help,
+        semester: req.body.semester,
+        idInstructor: req.body.idInstructor,
+        subscriptors: help1,
+        date: req.body.date,
+        timeInit:  req.body.timeInit,
+        timeEnd: req.body.timeEnd
     });
 
     asesoria.save().then(result =>{
@@ -65,9 +78,30 @@ exports.createAsesoria = (req,res) => {
     });
 };
 
-exports.getAsesoriaByMonitor = (req,res) => {
+exports.getAsesoriaByInstructor = (req,res) => {
 
-    Asesoria.find({idAsesor: req.query.idAsesor}, (err,result) =>{
+    Asesoria.find({idInstructor: req.query.idInstructor}, (err,result) =>{
+
+        if( result.length==0 || err ){
+            res.send({
+                status:400,
+                message: "Error searching in bd",
+                error: err  
+            });
+        }else{
+            console.log("Results tiene ", result);
+            res.send({
+                status:200,
+                message: "The results are",
+                data: result
+            });
+        }
+    });
+}; 
+
+exports.getAllAsesorias = (req,res) => {
+
+    Asesoria.find({}, (err,result) =>{
 
         if( result.length==0 || err ){
             res.send({
