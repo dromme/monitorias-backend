@@ -7,7 +7,9 @@ const instructorSchema = new mongoose.Schema({
     },
     "documentNumber":{
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        dropDups: true
     },
     "firstName":{
         type: String,

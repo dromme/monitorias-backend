@@ -10,6 +10,8 @@ const userRouter = require('./App/routes/getUser');
 const cursoRouter = require('./App/routes/getCurso');
 
 mongoose.connect(uri,{ useNewUrlParser:true});
+mongoose.set('useCreateIndex', true);
+
 app.use(cors());
 app.use(bodyParser.json());
 
