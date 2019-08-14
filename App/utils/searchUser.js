@@ -38,6 +38,10 @@ exports.createStudent = (req, res) => {
                 });
             }).catch(error => {
                 console.log('I couldn\'t save to the db: ', error);
+                res.status(400).send({
+                    message: 'Error saving to the DB',
+                    error: error
+                });
             });
         }
     });
@@ -80,6 +84,10 @@ exports.createInstructor = async (req, res) => {
                 });
             }).catch(error => {
                 console.log('I couldn\'t save to the db: ', error);
+                res.status(400).send({
+                   message: 'Error saving to the DB',
+                   error:error 
+                });
             });
         }
     });
