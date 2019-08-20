@@ -12,7 +12,7 @@ exports.createStudent = (req, res) => {
 
         if (result != 0) {
             console.log('There is already an Instructor with your id number');
-            res.status(404).send({
+            res.status(400).send({
                 message: 'there is already an Instructor with your id number'
             });
         } else {
@@ -29,6 +29,7 @@ exports.createStudent = (req, res) => {
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 email: req.body.email,
+                password: req.body.password,
                 subscriptions: help
             });
 
@@ -75,6 +76,7 @@ exports.createInstructor = async (req, res) => {
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 email: req.body.email,
+                password: req.body.password,
                 cursos: help
             });
 
