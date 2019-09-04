@@ -112,3 +112,22 @@ exports.createMateria = (req, res) => {
         }
     });
 };
+
+exports.getAllCursos = (req, res) => {
+
+    Curso.find({}, (err, result) => {
+
+        if (result.length == 0 || err) {
+            res.stats(400).send({
+                message: "Error searching in bd",
+                error: err
+            });
+        } else {
+            console.log("Results tiene ", result);
+            res.status(200).send({
+                data: result
+            });
+        }
+    });
+};
+
