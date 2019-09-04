@@ -59,7 +59,7 @@ exports.getAllMaterias = (req, res) => {
     Materia.find({}, (err, result) => {
 
         if (result.length == 0 || err) {
-            res.stats(400).send({
+            res.status(400).send({
                 message: "Error searching in bd",
                 error: err
             });

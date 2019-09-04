@@ -4,7 +4,7 @@ const Instructor = require('../models/instructors');
 exports.createStudent = (req, res) => {
 
 
-    User.find({ documentNumber: req.body.documentNumber }, (err, result) => {
+    User.find({documentType: req.body.documentType, documentNumber: req.body.documentNumber }, (err, result) => {
 
         if (err) {
             console.log(err);
@@ -50,7 +50,7 @@ exports.createStudent = (req, res) => {
 
 exports.createInstructor = async (req, res) => {
 
-    await Instructor.find({ documentNumber: req.body.documentNumber }, (err, result) => {
+    await Instructor.find({documentType: req.body.documentType, documentNumber: req.body.documentNumber }, (err, result) => {
 
         if (err) {
             console.log(err);
