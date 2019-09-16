@@ -1,4 +1,5 @@
 const Curso = require('../models/materiaxinstructor');
+const Student = require('../models/students');
 
 exports.subscribeToCurso = (req, res) => {
 
@@ -19,11 +20,37 @@ exports.subscribeToCurso = (req, res) => {
 
             result[0].subscriptors.push(subscriptor);
 
-            Curso.findByIdAndUpdate({ _id: result[0]._id }, { $set: {subscriptors: result[0].subscriptors} },(err, resultado) => {
-                res.status(200).send({
-                    data: resultado
+            let subscriptions = {
+                idMateria: result[0].idMateria,
+                idMateriaxinstructor: result[0]._id
+            };
+            //Updating the subscriptors in the curso
+            Curso.findByIdAndUpdate({ _id: result[0]._id }, { $set: { subscriptors: result[0].subscriptors } }, (err, resultado) => {
+                //Finding the student
+                Student.find({ documentNumber: req.body.idStudent }, (err, retorno) => {
+                    if (err || retorno.length == 0) {
+                        res.status(404).send({
+                            message: "there was an error, we couldn't find the student",
+                            error: err
+                        });
+
+                    }
+                    retorno[0].subscriptions.push(subscriptions);
+                    //Updating the subscriptions array of the student
+                    Student.findOneAndUpdate({ documentNumber: req.body.idStudent }, { $set: { subscriptions: retorno[0].subscriptions } }, (err, resul) => {
+                        if (err) {
+                            res.status(404).send({
+                                message: "there was an error",
+                                error: err
+                            });
+                        } else {
+                            res.status(200).send({
+                                data: resultado
+                            });
+                        }
+                    });
                 });
-            });        
+            });
         }
     });
 };
