@@ -9,5 +9,6 @@ router.post('/createMateria',Curso.createMateria);
 router.get('/getAllMateriasxInstructor',Curso.getAllCursos);
 router.post('/subscribeToCurso',Subscribe.subscribeToCurso);
 router.get('/getSubscriptions',Subscribe.getSubscriptionsByStudent);
+router.get('/getAsesoriasByStudent',Subscribe.getAsesoriasByStudent);
 
 module.exports = router;

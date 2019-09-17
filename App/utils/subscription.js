@@ -69,3 +69,18 @@ exports.getSubscriptionsByStudent = (req,res)=>{
         }
     });
 };
+
+exports.getAsesoriasByStudent = (req,res)=>{
+    Student.find({ documentNumber: req.query.idStudent }, (err, result) => {
+        if(err || result.length == 0){
+            res.status(404).send({
+                message: "We couldn't find the student in our db",
+                error: err
+            });
+        }else{
+            res.status(200).send({
+                data: result[0].asesoriaAttendance
+            });
+        }
+    });
+};
