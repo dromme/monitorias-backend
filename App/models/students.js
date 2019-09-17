@@ -30,7 +30,13 @@ const studentSchema = new mongoose.Schema({
     "subscriptions" : [{
         "idMateriaxinstructor" : {type:String}, 
         "idMateria" : {type:String}
-         }]
+         }],
+    "asesoriaAttendance":[{
+        "idAsesoria" : {type:String},
+        "name" : {type:String},
+        "date" : {type:String},
+        "idMateriaxinstructor":{type:String}
+    }]
 });
 
 const student = mongoose.model('student',studentSchema);

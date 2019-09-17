@@ -99,7 +99,6 @@ exports.getAsesoriaByInstructor = (req, res) => {
                 error: err
             });
         } else {
-            console.log("Results tiene ", result);
             res.status(200).send({
                 message: "The results are",
                 data: result
@@ -118,7 +117,6 @@ exports.getAllAsesorias = (req, res) => {
                 error: err
             });
         } else {
-            console.log("Results tiene ", result);
             res.status(200).send({
                 message: "The results are",
                 data: result

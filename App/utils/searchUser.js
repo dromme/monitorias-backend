@@ -4,16 +4,15 @@ const Instructor = require('../models/instructors');
 exports.createStudent = (req, res) => {
 
 
-    User.find({documentType: req.body.documentType, documentNumber: req.body.documentNumber }, (err, result) => {
+    User.find({ documentType: req.body.documentType, documentNumber: req.body.documentNumber }, (err, result) => {
 
         if (err) {
             console.log(err);
         }
 
         if (result != 0) {
-            console.log('There is already an Instructor with your id number');
             res.status(400).send({
-                message: 'there is already an Instructor with your id number'
+                message: 'there is already an Student with your id number'
             });
         } else {
 
@@ -23,6 +22,13 @@ exports.createStudent = (req, res) => {
                 idMateria: req.body.isubscrciptionsdMateria
             };
 
+            const help2 = {
+                "idAsesoria": req.body.idAsesoria,
+                "name": req.body.name,
+                "date": req.body.name,
+                "idMateriaxinstructor": req.body.idMateriaxinstructor
+            };
+
             const student = new User({
                 documentType: req.body.documentType,
                 documentNumber: req.body.documentNumber,
@@ -30,7 +36,8 @@ exports.createStudent = (req, res) => {
                 lastName: req.body.lastName,
                 email: req.body.email,
                 password: req.body.password,
-                subscriptions: help
+                subscriptions: help,
+                asesoriaAttendance: help2
             });
 
             student.save().then(result => {
@@ -50,7 +57,7 @@ exports.createStudent = (req, res) => {
 
 exports.createInstructor = async (req, res) => {
 
-    await Instructor.find({documentType: req.body.documentType, documentNumber: req.body.documentNumber }, (err, result) => {
+    await Instructor.find({ documentType: req.body.documentType, documentNumber: req.body.documentNumber }, (err, result) => {
 
         if (err) {
             console.log(err);
@@ -87,8 +94,8 @@ exports.createInstructor = async (req, res) => {
             }).catch(error => {
                 console.log('I couldn\'t save to the db: ', error);
                 res.status(400).send({
-                   message: 'Error saving to the DB',
-                   error:error 
+                    message: 'Error saving to the DB',
+                    error: error
                 });
             });
         }
