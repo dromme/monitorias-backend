@@ -28,6 +28,9 @@ const asesoriaSchema = new mongoose.Schema({
         required: true
     },
     "subscriptors" : [{
+        "idStudent":{
+            type:String
+        },
         "name" : {
             type:String},
         "email": {

@@ -9,5 +9,6 @@ router.post('/createAsesoria',Asesoria.createAsesoria);
 router.get('/byInstructor',Asesoria.getAsesoriaByInstructor);
 router.get('/getAllAsesorias',Asesoria.getAllAsesorias);
 router.get('/getAsesoriasByStudent',Subscribe.getAsesoriasByStudent);
+router.post('/attendAsesoria',Subscribe.attendAsesoria);
     
 module.exports = router;
