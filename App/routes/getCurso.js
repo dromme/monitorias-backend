@@ -9,6 +9,9 @@ router.post('/createMateria',Curso.createMateria);
 router.get('/getAllMateriasxInstructor',Curso.getAllCursos);
 router.post('/subscribeToCurso',Subscribe.subscribeToCurso);
 router.get('/getSubscriptions',Subscribe.getSubscriptionsByStudent);
+//Get all asesorías by course
+//Get all asesorías 
 
+//Search in passport.js to use the Google Oauth
 
 module.exports = router;

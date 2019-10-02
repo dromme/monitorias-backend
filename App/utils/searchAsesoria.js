@@ -1,4 +1,5 @@
 const Asesoria = require('../models/asesorias');
+const Curso = require('../models/materiaxinstructor');
 
 exports.getAsesoriaByDay = (req, res) => {
 
@@ -51,11 +52,13 @@ exports.createAsesoria = (req, res) => {
 
 
             const help = {
-                id: req.body.idInstructor,
-                idMateria: req.body.nameInstructor
+                id: req.body.idMateriaxInstructor,
+                idMateria: req.body.idMateria
             };
 
+            //Not necessary, just for instanciating the data.
             const help1 = {
+                idStudent: req.body.idStudent,
                 name: req.body.nameSubscriptor,
                 email: req.body.email,
                 state: req.body.state
@@ -75,8 +78,15 @@ exports.createAsesoria = (req, res) => {
             });
 
             asesoria.save().then(result => {
-                res.status(200).send({
-                    saved: result
+
+                Curso.find({ _id: req.body.idMateriaxInstructor }, (err, resultado) => {
+                    resultado[0].asesoria.push(result._id);
+
+                    Curso.findOneAndUpdate({ _id: req.body.idMateriaxInstructor }, { $set: { asesoria: resultado[0].asesoria } }, (err, resul) => {
+                        res.status(200).send({
+                            saved: result
+                        });
+                    });
                 });
             }).catch(error => {
                 console.log('I couldn\'t save to the db: ', error);
