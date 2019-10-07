@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 exports.userLogin = (req, res) => {
 
-    Student.find({ email: req.query.email, password: req.query.password }, (err, result) => {
+    Student.find({ email: req.body.email, password: req.body.password }, (err, result) => {
 
         if (result.length == 0 || err) {
             res.status(404).send({
