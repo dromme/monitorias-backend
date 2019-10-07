@@ -1,5 +1,6 @@
 const Curso = require('../models/materiaxinstructor');
 const Materia = require('../models/materias');
+const Instructor = require('../models/instructors');
 
 //MateriaXInstructor
 exports.createCurso = (req, res) => {
@@ -40,9 +41,17 @@ exports.createCurso = (req, res) => {
             });
 
             curso.save().then(result => {
-                res.status(200).send({
-                    saved: result
+
+                //Add id to Instructor here
+                Instructor.find({documentNumber:idInstructor},(err,resultado)=>{
+                    resultado[0].cursos.push(result._id);
+                    Instructor.findOneAndUpdate({documentNumber:idInstructor},{ $set: { cursos: resultado[0].cursos } },(err,re)=>{
+                        res.status(200).send({
+                            saved: result
+                        });
+                    });
                 });
+                //                
             }).catch(error => {
                 console.log('I couldn\'t save to the db: ', error);
                 res.status(400).send({
