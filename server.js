@@ -8,6 +8,7 @@ const uri = "mongodb+srv://root:root@monitorias-db-m2hlw.mongodb.net/test?retryW
 const asesoriaRouter = require('./App/routes/getAsesoria');
 const userRouter = require('./App/routes/getUser');
 const cursoRouter = require('./App/routes/getCurso');
+const loginRouter = require('./App/routes/getLogin');
 
 mongoose.connect(uri,{ useNewUrlParser:true});
 mongoose.set('useCreateIndex', true);
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use('/api/v1',asesoriaRouter);
 app.use('/api/v1/users',userRouter);
 app.use('/api/v1/cursos',cursoRouter);
+app.use('/api/v1',loginRouter);
 
 app.listen(port, function() {
     console.log("Server is running on Port: " + port);
