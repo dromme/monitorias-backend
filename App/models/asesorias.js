@@ -1,57 +1,58 @@
 const mongoose = require("mongoose");
 const asesoriaSchema = new mongoose.Schema({
-    
-    "name":{
+
+    "name": {
         type: String,
         required: true
     },
-    "description":{
+    "description": {
         type: String,
         required: true
     },
-    "place":{
+    "place": {
         type: String,
         required: true
     },
-    "materiaxinstructor" : [{
-        "id" : {
-            type:String},
-        "idMateria":{
-            type:String}
-         }],
-    "semester":{
+    "idMateria": {
         type: String,
         required: true
     },
-    "idInstructor":{
+    "semester": {
         type: String,
         required: true
     },
-    "subscriptors" : [{
-        "idStudent":{
-            type:String
+    "idInstructor": {
+        type: String,
+        required: true
+    },
+    "subscriptors": [{
+        "idStudent": {
+            type: String
         },
-        "name" : {
-            type:String},
+        "name": {
+            type: String
+        },
         "email": {
-            type:String},
+            type: String
+        },
         "state": {
-            type:String}
-         }],
-    "date":{
+            type: String
+        }
+    }],
+    "date": {
         type: String,
         required: true,
         trim: true
     },
-    "timeInit":{
+    "timeInit": {
         type: String,
         required: true
     },
-    "timeEnd":{
+    "timeEnd": {
         type: String,
         required: true
     }
 });
 
-const asesoria = mongoose.model('quote',asesoriaSchema);
+const asesoria = mongoose.model('quote', asesoriaSchema);
 module.exports = asesoria;

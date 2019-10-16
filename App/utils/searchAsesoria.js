@@ -74,19 +74,13 @@ exports.createAsesoria = (req, res) => {
                 subscriptors: help1,
                 date: req.body.date,
                 timeInit: req.body.timeInit,
-                timeEnd: req.body.timeEnd
+                timeEnd: req.body.timeEnd,
+                idMateria: req.body.idMateria
             });
 
             asesoria.save().then(resultadito => {
-
-                Curso.find({ _id: req.body.idMateriaxInstructor }, (err, resultado) => {
-                    resultado[0].asesoria.push(resultadito._id);
-
-                    Curso.findOneAndUpdate({ _id: req.body.idMateriaxInstructor }, { $set: { asesoria: resultado[0].asesoria } }, (err, resul) => {
-                        res.status(200).send({
-                            saved: resultadito
-                        });
-                    });
+                res.status(200).send({
+                    saved: resultadito
                 });
             }).catch(error => {
                 console.log('I couldn\'t save to the db: ', error);
