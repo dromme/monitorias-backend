@@ -5,7 +5,7 @@ const Subscribe = require('../utils/subscription');
 const checkAuth = require('../middleware/check-auth');
 
 router.post('/createCurso',Curso.createCurso);
-router.get('/getAllCursos',checkAuth,Curso.getAllMaterias);
+router.get('/getAllCursos',Curso.getAllMaterias);
 router.post('/createMateria',Curso.createMateria);
 router.get('/getAllMateriasxInstructor',Curso.getAllCursos);
 router.post('/subscribeToCurso',Subscribe.subscribeToCurso);
