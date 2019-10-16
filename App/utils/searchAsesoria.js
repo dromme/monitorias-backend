@@ -77,14 +77,14 @@ exports.createAsesoria = (req, res) => {
                 timeEnd: req.body.timeEnd
             });
 
-            asesoria.save().then(result => {
+            asesoria.save().then(resultadito => {
 
                 Curso.find({ _id: req.body.idMateriaxInstructor }, (err, resultado) => {
-                    resultado[0].asesoria.push(result._id);
+                    resultado[0].asesoria.push(resultadito._id);
 
                     Curso.findOneAndUpdate({ _id: req.body.idMateriaxInstructor }, { $set: { asesoria: resultado[0].asesoria } }, (err, resul) => {
                         res.status(200).send({
-                            saved: result
+                            saved: resultadito
                         });
                     });
                 });
