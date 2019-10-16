@@ -40,14 +40,15 @@ exports.createCurso = (req, res) => {
                 subscriptors: help3
             });
 
-            curso.save().then(result => {
+            curso.save().then(resultadito => {
+                console.log(resultadito);
 
                 //Add id to Instructor here
-                Instructor.find({documentNumber:idInstructor},(err,resultado)=>{
+                Instructor.find({documentNumber:req.body.idInstructor},(err,resultado)=>{
                     resultado[0].cursos.push(result._id);
-                    Instructor.findOneAndUpdate({documentNumber:idInstructor},{ $set: { cursos: resultado[0].cursos } },(err,re)=>{
+                    Instructor.findOneAndUpdate({documentNumber:req.body.idInstructor},{ $set: { cursos: resultado[0].cursos } },(err,re)=>{
                         res.status(200).send({
-                            saved: result
+                            saved: resultadito
                         });
                     });
                 });
