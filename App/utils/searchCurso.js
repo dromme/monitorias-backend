@@ -9,7 +9,7 @@ exports.createCurso = (req, res) => {
 
         if (error) { console.log(error); }
 
-        if (result.length == 0) {
+        if (result.length != 0) {
             res.status(400).send({
                 message: 'There is already a curso with the assigned instructor in the same semester'
             });
